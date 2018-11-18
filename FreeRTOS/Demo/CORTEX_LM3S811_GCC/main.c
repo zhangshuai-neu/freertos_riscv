@@ -156,6 +156,7 @@ int main( void )
 	vStartBlockingQueueTasks( mainBLOCK_Q_PRIORITY );
 
 	/* Start the tasks defined within the file. */
+	// 创建三个任务
 	xTaskCreate( vCheckTask, "Check", configMINIMAL_STACK_SIZE, NULL, mainCHECK_TASK_PRIORITY, NULL );
 	xTaskCreate( vButtonHandlerTask, "Status", configMINIMAL_STACK_SIZE, NULL, mainCHECK_TASK_PRIORITY + 1, NULL );
 	xTaskCreate( vPrintTask, "Print", configMINIMAL_STACK_SIZE, NULL, mainCHECK_TASK_PRIORITY - 1, NULL );
@@ -169,7 +170,7 @@ int main( void )
 	return 0;
 }
 /*-----------------------------------------------------------*/
-
+// 检测任务
 static void vCheckTask( void *pvParameters )
 {
 portBASE_TYPE xErrorOccurred = pdFALSE;
@@ -192,12 +193,12 @@ const char *pcFailMessage = "FAIL";
 		{
 			xErrorOccurred = pdTRUE;
 		}
-	
+
 		if( xArePollingQueuesStillRunning() != pdTRUE )
 		{
 			xErrorOccurred = pdTRUE;
 		}
-	
+
 		if( xAreSemaphoreTasksStillRunning() != pdTRUE )
 		{
 			xErrorOccurred = pdTRUE;
@@ -265,7 +266,7 @@ static void prvSetupHardware( void )
 	OSRAMStringDraw("LM3S811 demo", 16, 1);
 }
 /*-----------------------------------------------------------*/
-
+// 按钮处理
 static void vButtonHandlerTask( void *pvParameters )
 {
 const char *pcInterruptMessage = "Int";
@@ -340,7 +341,7 @@ portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
 	portEND_SWITCHING_ISR( xHigherPriorityTaskWoken );
 }
 /*-----------------------------------------------------------*/
-
+// 打印任务
 static void vPrintTask( void *pvParameters )
 {
 char *pcMessage;
@@ -358,4 +359,3 @@ unsigned portBASE_TYPE uxLine = 0, uxRow = 0;
 		OSRAMStringDraw( pcMessage, uxLine & 0x3f, uxRow & 0x01);
 	}
 }
-

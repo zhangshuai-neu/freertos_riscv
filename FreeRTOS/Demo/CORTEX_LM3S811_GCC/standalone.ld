@@ -47,8 +47,8 @@ SECTIONS
         *(.ARM.exidx*)
        *(.gnu.linkonce.armexidx.*)
     } > FLASH
-    _begin_data = .;
     
+    _begin_data = .;
     .data : AT ( _begin_data )
     {
         _data = .;
