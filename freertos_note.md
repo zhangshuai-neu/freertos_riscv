@@ -1,6 +1,6 @@
 # FreeRTOS的API
 
-###1. 任务
+## 1. 任务
 
 **常见Task API:**
 
@@ -11,7 +11,8 @@
 |vTaskDelay|阻塞延迟|任务主动进入阻塞态，从函数调用开始，延迟固定时间|
 |vTaskDelayUntil|阻塞延迟|任务主动进入阻塞态，延迟到某一确定时刻|
 |xTaskGetTickCount|获得当前心跳值|获取时间，和vTaskDelayUntil搭配使用|
-|vTaskPrioritySet|改变任务优先级|在|
+|vTaskPrioritySet|改变任务优先级|在调度器启动后改变任务的优先级|
+
 代码所在位置：source/task.c
 
 **任务状态：**
@@ -32,8 +33,9 @@
 空闲任务是最低优先级，不会对其他任务进行干扰。
 
 **状态切换图：**
+
 ```mermaid
-graph LR
+graph LR;
 初始-->就绪
 就绪-->运行
 就绪-->挂起
@@ -44,4 +46,4 @@ graph LR
 挂起-->就绪
 ```
 
-###2. 队列
+## 2. 队列
