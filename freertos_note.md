@@ -11,7 +11,7 @@
 |vTaskDelay|阻塞延迟|任务主动进入阻塞态，从函数调用开始，延迟固定时间|
 |vTaskDelayUntil|阻塞延迟|任务主动进入阻塞态，延迟到某一确定时刻|
 |xTaskGetTickCount|获得当前心跳值|获取时间，和vTaskDelayUntil搭配使用|
-|vTaskPrioritySet|改变任务优先级|zai|
+|vTaskPrioritySet|改变任务优先级|在|
 代码所在位置：source/task.c
 
 **任务状态：**
