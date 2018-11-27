@@ -1,30 +1,3 @@
-/*
- * FreeRTOS Kernel V10.0.0
- * Copyright (C) 2017 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software. If you wish to use our Amazon
- * FreeRTOS name, please do so in a fair use way that does not cause confusion.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *
- * http://www.FreeRTOS.org
- * http://aws.amazon.com/freertos
- *
- * 1 tab == 4 spaces!
- */
 
 /*
  * A sample implementation of pvPortMalloc() and vPortFree() that combines
@@ -50,13 +23,13 @@ task.h is included from an application file. */
 	#error This file must not be used if configSUPPORT_DYNAMIC_ALLOCATION is 0
 #endif
 
-/* Block sizes must not get too small. */
+// 块不能太小
 #define heapMINIMUM_BLOCK_SIZE	( ( size_t ) ( xHeapStructSize << 1 ) )
 
-/* Assumes 8bit bytes! */
+// 每个byte有多少bit
 #define heapBITS_PER_BYTE		( ( size_t ) 8 )
 
-/* Allocate the memory for the heap. */
+// 为heap分配内存
 #if( configAPPLICATION_ALLOCATED_HEAP == 1 )
 	/* The application writer has already defined the array used for the RTOS
 	heap - probably so it can be placed in a special segment or address. */
@@ -65,8 +38,8 @@ task.h is included from an application file. */
 	static uint8_t ucHeap[ configTOTAL_HEAP_SIZE ];
 #endif /* configAPPLICATION_ALLOCATED_HEAP */
 
-/* Define the linked list structure.  This is used to link free blocks in order
-of their memory address. */
+// 定义链接结构
+// 按内存地址顺序将空闲块进行链接
 typedef struct A_BLOCK_LINK
 {
 	struct A_BLOCK_LINK *pxNextFreeBlock;	/*<< The next free block in the list. */
@@ -81,45 +54,39 @@ typedef struct A_BLOCK_LINK
  * the block in front it and/or the block behind it if the memory blocks are
  * adjacent to each other.
  */
+// 插入内存块
 static void prvInsertBlockIntoFreeList( BlockLink_t *pxBlockToInsert );
 
-/*
- * Called automatically to setup the required heap structures the first time
- * pvPortMalloc() is called.
- */
+// 在pvPortMalloc第一次被调用时自动执行
 static void prvHeapInit( void );
 
 /*-----------------------------------------------------------*/
 
-/* The size of the structure placed at the beginning of each allocated memory
-block must by correctly byte aligned. */
+// heap结构的大小，放置在分配内存块的开头，字节对齐
 static const size_t xHeapStructSize	= ( sizeof( BlockLink_t ) + ( ( size_t ) ( portBYTE_ALIGNMENT - 1 ) ) ) & ~( ( size_t ) portBYTE_ALIGNMENT_MASK );
 
-/* Create a couple of list links to mark the start and end of the list. */
+// 创建block_list的链表头尾
 static BlockLink_t xStart, *pxEnd = NULL;
 
-/* Keeps track of the number of free bytes remaining, but says nothing about
-fragmentation. */
+// 记录剩余字节数
 static size_t xFreeBytesRemaining = 0U;
 static size_t xMinimumEverFreeBytesRemaining = 0U;
 
-/* Gets set to the top bit of an size_t type.  When this bit in the xBlockSize
-member of an BlockLink_t structure is set then the block belongs to the
-application.  When the bit is free the block is still part of the free heap
-space. */
+// 获取size_t类型的最高bit
+// 如果该位置1，则认为该block属于应用，否则认为是空闲的
 static size_t xBlockAllocatedBit = 0;
 
 /*-----------------------------------------------------------*/
-
+// 分配内存
 void *pvPortMalloc( size_t xWantedSize )
 {
-BlockLink_t *pxBlock, *pxPreviousBlock, *pxNewBlockLink;
-void *pvReturn = NULL;
-
+    BlockLink_t *pxBlock, *pxPreviousBlock, *pxNewBlockLink;
+    void *pvReturn = NULL;
+    
+    //停止调度器
 	vTaskSuspendAll();
 	{
-		/* If this is the first call to malloc then the heap will require
-		initialisation to setup the list of free blocks. */
+        // 如果是第一次调用，则初始化heap堆
 		if( pxEnd == NULL )
 		{
 			prvHeapInit();
@@ -128,21 +95,17 @@ void *pvReturn = NULL;
 		{
 			mtCOVERAGE_TEST_MARKER();
 		}
-
-		/* Check the requested block size is not so large that the top bit is
-		set.  The top bit of the block size member of the BlockLink_t structure
-		is used to determine who owns the block - the application or the
-		kernel, so it must be free. */
+        
+        // 检查申请的大小是否会覆盖xBlockAllocatedBit位
 		if( ( xWantedSize & xBlockAllocatedBit ) == 0 )
 		{
-			/* The wanted size is increased so it can contain a BlockLink_t
-			structure in addition to the requested amount of bytes. */
+            // BlockLink_t 结构需要
+            // 申请的size比 BlockLink_t 类型大
 			if( xWantedSize > 0 )
 			{
 				xWantedSize += xHeapStructSize;
 
-				/* Ensure that blocks are always aligned to the required number
-				of bytes. */
+                // 确保内存块对齐
 				if( ( xWantedSize & portBYTE_ALIGNMENT_MASK ) != 0x00 )
 				{
 					/* Byte alignment required. */
@@ -161,8 +124,7 @@ void *pvReturn = NULL;
 
 			if( ( xWantedSize > 0 ) && ( xWantedSize <= xFreeBytesRemaining ) )
 			{
-				/* Traverse the list from the start	(lowest address) block until
-				one	of adequate size is found. */
+                // 从start开始遍历找到所有的block
 				pxPreviousBlock = &xStart;
 				pxBlock = xStart.pxNextFreeBlock;
 				while( ( pxBlock->xBlockSize < xWantedSize ) && ( pxBlock->pxNextFreeBlock != NULL ) )
@@ -333,8 +295,7 @@ BlockLink_t *pxFirstFreeBlock;
 uint8_t *pucAlignedHeap;
 size_t uxAddress;
 size_t xTotalHeapSize = configTOTAL_HEAP_SIZE;
-
-	/* Ensure the heap starts on a correctly aligned boundary. */
+    // 确保heap是字节对齐的
 	uxAddress = ( size_t ) ucHeap;
 
 	if( ( uxAddress & portBYTE_ALIGNMENT_MASK ) != 0 )
@@ -346,31 +307,29 @@ size_t xTotalHeapSize = configTOTAL_HEAP_SIZE;
 
 	pucAlignedHeap = ( uint8_t * ) uxAddress;
 
-	/* xStart is used to hold a pointer to the first item in the list of free
-	blocks.  The void cast is used to prevent compiler warnings. */
+    //自由块的起始位置，当前块大小为0
 	xStart.pxNextFreeBlock = ( void * ) pucAlignedHeap;
 	xStart.xBlockSize = ( size_t ) 0;
 
-	/* pxEnd is used to mark the end of the list of free blocks and is inserted
-	at the end of the heap space. */
+    //pxEnd用来记录自由块列表的末尾，插入到heap空间的末尾
 	uxAddress = ( ( size_t ) pucAlignedHeap ) + xTotalHeapSize;
 	uxAddress -= xHeapStructSize;
 	uxAddress &= ~( ( size_t ) portBYTE_ALIGNMENT_MASK );
+    //初始化末尾block
 	pxEnd = ( void * ) uxAddress;
 	pxEnd->xBlockSize = 0;
 	pxEnd->pxNextFreeBlock = NULL;
-
-	/* To start with there is a single free block that is sized to take up the
-	entire heap space, minus the space taken by pxEnd. */
+    
+    // 初始化freeblock，从xStart开始 
 	pxFirstFreeBlock = ( void * ) pucAlignedHeap;
 	pxFirstFreeBlock->xBlockSize = uxAddress - ( size_t ) pxFirstFreeBlock;
 	pxFirstFreeBlock->pxNextFreeBlock = pxEnd;
 
-	/* Only one block exists - and it covers the entire usable heap space. */
+    // 自由空间大小
 	xMinimumEverFreeBytesRemaining = pxFirstFreeBlock->xBlockSize;
 	xFreeBytesRemaining = pxFirstFreeBlock->xBlockSize;
-
-	/* Work out the position of the top bit in a size_t variable. */
+    
+    // 计算size_t类型的顶部bit
 	xBlockAllocatedBit = ( ( size_t ) 1 ) << ( ( sizeof( size_t ) * heapBITS_PER_BYTE ) - 1 );
 }
 /*-----------------------------------------------------------*/
@@ -435,3 +394,4 @@ uint8_t *puc;
 	}
 }
 
+ 
