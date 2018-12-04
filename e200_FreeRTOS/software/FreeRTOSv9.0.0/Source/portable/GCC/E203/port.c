@@ -1,5 +1,6 @@
 /*-----------------------------------------------------------
  * Implementation of functions defined in portable.h for the ARM CM3 port.
+ * 定义在
  *----------------------------------------------------------*/
 
 /* Scheduler includes. */
@@ -16,7 +17,9 @@
 
 
 /* Each task maintains its own interrupt status in the critical nesting
-variable. */
+variable. 
+每个任务维持自己中断嵌套变量
+*/
 UBaseType_t uxCriticalNesting = 0xaaaaaaaa;
 
 #if USER_MODE_TASKS
@@ -28,6 +31,7 @@ UBaseType_t uxCriticalNesting = 0xaaaaaaaa;
 
 /*
  * Used to catch tasks that attempt to return from their implementing function.
+ * 捕捉任务返回
  */
 static void prvTaskExitError( void );
 
@@ -35,7 +39,8 @@ static void prvTaskExitError( void );
 /*-----------------------------------------------------------*/
 
 /* System Call Trap */
-//ECALL macro stores argument in a2
+// 系统调用陷阱
+//ECALL macro stores argument in a2， ECALL宏，在a2中存放参数
 unsigned long ulSynchTrap(unsigned long mcause, unsigned long sp, unsigned long arg1)	{
 
 	switch(mcause)	{
@@ -77,6 +82,7 @@ unsigned long ulSynchTrap(unsigned long mcause, unsigned long sp, unsigned long 
 void vPortEnterCritical( void )
 {
 	#if USER_MODE_TASKS
+		//e200停用
 		ECALL(IRQ_DISABLE);
 	#else
 		portDISABLE_INTERRUPTS();
@@ -125,11 +131,15 @@ int xPortSetInterruptMask()
 /*-----------------------------------------------------------*/
 /*
  * See header file for description.
+ * 设置栈寄存器
  */
 StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t pxCode, void *pvParameters )
 {
 	/* Simulate the stack frame as it would be created by a context switch
-	interrupt. */
+	interrupt. 
+	建立模拟的栈框架，手动创建栈的上下文。
+	每个任务都是从中断进入任务切换的
+	*/
 
 	register int *tp asm("x3");
 	pxTopOfStack--;
