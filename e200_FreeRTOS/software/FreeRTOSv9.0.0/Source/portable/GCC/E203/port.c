@@ -177,7 +177,8 @@ void prvTaskExitError( void )
 /*-----------------------------------------------------------*/
 
 
-/*Entry Point for Machine Timer Interrupt Handler*/
+/* Entry Point for Machine Timer Interrupt Handler*/
+// 系统时钟中断处理
 void vPortSysTickHandler(){
 	static uint64_t then = 0;
 
@@ -195,6 +196,7 @@ void vPortSysTickHandler(){
 	*mtimecmp = then;
 
 
+	// 任务切换
 	/* Increment the RTOS tick. */
 	if( xTaskIncrementTick() != pdFALSE )
 	{

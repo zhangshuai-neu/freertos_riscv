@@ -414,15 +414,19 @@ void enable_interrupt(uint32_t int_num, uint32_t int_priority, function_ptr_t ha
 
 /*
  *enables the plic and programs handlers
+ * 中断初始化，使能plic
+ * 
 **/
 void interrupts_init(  ) {
 
     // Disable the machine & timer interrupts until setup is done.
+    // 停用外部中断
     clear_csr(mie, MIP_MEIP);
     clear_csr(mie, MIP_MTIP);
 
 
   //setup PLIC
+  // 设置平台中断控制
   PLIC_init(&g_plic,
 	    PLIC_CTRL_ADDR,
 	    PLIC_NUM_INTERRUPTS,
@@ -430,10 +434,12 @@ void interrupts_init(  ) {
 
   //assign interrupts to defaul handler
   for (int ii = 0; ii < PLIC_NUM_INTERRUPTS; ii ++){
+      //设置外部中断的处理函数
     g_ext_interrupt_handlers[ii] = no_interrupt_handler;
   }
 
     // Enable the Machine-External bit in MIE
+    // 打开外部中断
     set_csr(mie, MIP_MEIP);
 }
 /*-----------------------------------------------------------*/
@@ -447,9 +453,11 @@ void led_init()  {
 /*-----------------------------------------------------------*/
 
 /*
-**configures the wake button for irq trigger
-**requires that the wake pin is connected to pin2
-*/
+ * configures the wake button for irq trigger
+ * requires that the wake pin is connected to pin2
+ * 
+ * 配置中断 
+ */
 void wake_irq_init()  {
 
     //dissable hw io function

@@ -21,10 +21,10 @@
 /****************************************************************************
  * Platform definitions
  *****************************************************************************/
-
+// 平台定义
 #define TRAPVEC_TABLE_CTRL_ADDR _AC(0x00001010,UL)
-#define CLINT_CTRL_ADDR         _AC(0x02000000,UL)
-#define PLIC_CTRL_ADDR          _AC(0x0C000000,UL)
+#define CLINT_CTRL_ADDR         _AC(0x02000000,UL)  // 局部中断控制器 core local 生成时钟中断和软中断
+#define PLIC_CTRL_ADDR          _AC(0x0C000000,UL)  // 平台级中断控制器 platform level 生成外部中断
 #define AON_CTRL_ADDR           _AC(0x10000000,UL)
 #define GPIO_CTRL_ADDR          _AC(0x10012000,UL)
 #define UART0_CTRL_ADDR         _AC(0x10013000,UL)
