@@ -78,7 +78,7 @@ unsigned long ulSynchTrap(unsigned long mcause, unsigned long sp, unsigned long 
 	return sp;
 }
 
-
+// 进入临界区，此处仅仅是关中断
 void vPortEnterCritical( void )
 {
 	#if USER_MODE_TASKS
@@ -91,7 +91,7 @@ void vPortEnterCritical( void )
 	uxCriticalNesting++;
 }
 /*-----------------------------------------------------------*/
-
+// 离开临界区，此处仅仅是开中断
 void vPortExitCritical( void )
 {
 	configASSERT( uxCriticalNesting );
@@ -205,9 +205,11 @@ void vPortSysTickHandler(){
 /*-----------------------------------------------------------*/
 
 
+// 配置时钟
 void vPortSetupTimer()	{
 
     // Set the machine timer
+	// 设置机器时间
     volatile uint64_t * mtime       = (uint64_t*) (CLINT_CTRL_ADDR + CLINT_MTIME);
     volatile uint64_t * mtimecmp    = (uint64_t*) (CLINT_CTRL_ADDR + CLINT_MTIMECMP);
     uint64_t now = *mtime;
@@ -215,6 +217,7 @@ void vPortSetupTimer()	{
     *mtimecmp = then;
 
     // Enable the Machine-Timer bit in MIE
+	// 打开时钟
     set_csr(mie, MIP_MTIP);
 }
 /*-----------------------------------------------------------*/

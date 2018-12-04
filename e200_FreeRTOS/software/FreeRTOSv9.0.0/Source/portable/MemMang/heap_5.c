@@ -432,6 +432,7 @@ uint8_t *puc;
 }
 /*-----------------------------------------------------------*/
 
+// 定义heap的区域
 void vPortDefineHeapRegions( const HeapRegion_t * const pxHeapRegions )
 {
 BlockLink_t *pxFirstFreeBlockInRegion = NULL, *pxPreviousFreeBlock;
@@ -451,6 +452,7 @@ const HeapRegion_t *pxHeapRegion;
 		xTotalRegionSize = pxHeapRegion->xSizeInBytes;
 
 		/* Ensure the heap region starts on a correctly aligned boundary. */
+		// 确保字节对齐
 		xAddress = ( size_t ) pxHeapRegion->pucStartAddress;
 		if( ( xAddress & portBYTE_ALIGNMENT_MASK ) != 0 )
 		{

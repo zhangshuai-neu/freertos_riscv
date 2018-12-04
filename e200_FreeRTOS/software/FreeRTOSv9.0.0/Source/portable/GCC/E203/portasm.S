@@ -28,6 +28,7 @@
 .global trap_entry
 
 /* Macro for saving task context */
+// 保存任务的上下文
 .macro pushREGFILE
 	/* make room in stack */
 	addi	sp, sp, -REGBYTES * 34
@@ -68,6 +69,7 @@
 .endm
 
 /*saves mstatus and tcb	*/
+// 保存机器状态和任务控制块
 .macro portSAVE_CONTEXT
 	.global	pxCurrentTCB
 		/* Store mstatus */
@@ -81,6 +83,7 @@
 
 
 /* Saves current error program counter (EPC) as task program counter */
+// 保存当前错误PC
 .macro portSAVE_EPC
   	csrr	t0, mepc
 	STORE	t0, 33 * REGBYTES(sp)
@@ -88,6 +91,7 @@
 .endm
 
 /* Saves current return adress (RA) as task program counter */
+// 保存任务当前地址作为pc
 .macro portSAVE_RA
 	LOAD	t0, 1 * REGBYTES(sp)
 	STORE	t0, 33 * REGBYTES(sp)
@@ -101,6 +105,7 @@
  .endm
 
  /*restore mstatus and tcb	*/
+ // 读取机器状态和任务控制块
 .macro portRESTORE_CONTEXT
 	.global	pxCurrentTCB
 	/* Load stack pointer from the current TCB */
@@ -116,6 +121,7 @@
 
 
 /* Macro for restoring task context */
+// 读取任务上下文
 .macro popREGFILE
 
 	/* Restore registers,
@@ -155,12 +161,13 @@
 .endm
 
 /* Interrupt entry point */
+// 中断入口点
 trap_entry:
 	/* Check for interrupt */
 	pushREGFILE
 	csrr	a0, mcause
 	blt		a0,zero,interrupt
-
+	//同步中断
 	/* synchronous interrupt*/
 	/* pass sp in a1 */
 	mv a1,sp
@@ -171,6 +178,7 @@ trap_entry:
 	mret
 
 /* async interrupt, this function is called */
+// 异步中断
 interrupt:
 	li      t0,INT_MASK
 	and     a0,a0,t0
@@ -199,6 +207,7 @@ xPortStartScheduler:
 	mret
 
 
+// 
 vPortYield:
 /*  adjust stack pointer back to where it was prior to ulSynchTrap  */
 	mv		sp,a0
@@ -212,11 +221,12 @@ vPortYield:
 	popREGFILE
 	mret
 
+// 终止调度器
 vPortEndScheduler:
 1:
 	j		1b
 
-
+// 处理中断
 .weak handle_interrupt
 handle_interrupt:
 1:
