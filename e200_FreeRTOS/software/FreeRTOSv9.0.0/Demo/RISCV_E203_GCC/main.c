@@ -1,6 +1,5 @@
-
 /* Kernel includes. */
-#include "FreeRTOS.h" /* Must come first. */
+#include "FreeRTOS.h" /* 必须放在最前面 Must come first. */
 #include "task.h"     /* RTOS task related API prototypes. */
 #include "queue.h"    /* RTOS queue related API prototypes. */
 #include "timers.h"   /* Software timer related API prototypes. */
@@ -57,23 +56,20 @@ static void prvQueueSendTask( void *pvParameters );
  */
 static void vExampleTimerCallback( TimerHandle_t xTimer );
 
-/*
- * The event semaphore task as described at the top of this file.
- */
+// 事件信号量
 static void prvEventSemaphoreTask( void *pvParameters );
 
 /*-----------------------------------------------------------*/
 
-/* The queue used by the queue send and queue receive tasks. */
+// 用于队列发送、接受任务
 static QueueHandle_t xQueue = NULL;
 
-/* The semaphore (in this case binary) that is used by the FreeRTOS tick hook
- * function and the event semaphore task.
- */
+// 用在系统tick钩子函数中 和 事件信号任务
 static SemaphoreHandle_t xEventSemaphore = NULL;
 
 /* The counters used by the various examples.  The usage is described in the
  * comments at the top of this file.
+ * 
  */
 static volatile uint32_t ulCountOfTimerCallbackExecutions = 0;
 static volatile uint32_t ulCountOfItemsReceivedOnQueue = 0;
@@ -81,11 +77,10 @@ static volatile uint32_t ulCountOfReceivedSemaphores = 0;
 
 /*-----------------------------------------------------------*/
 
-// Structures for registering different interrupt handlers
-// for different parts of the application.
+// 中断处理函数存放，外部中断，初始化为空
 typedef void (*function_ptr_t) (void);
 void no_interrupt_handler (void) {};
-function_ptr_t g_ext_interrupt_handlers[PLIC_NUM_INTERRUPTS];
+function_ptr_t g_ext_interrupt_handlers[PLIC_NUM_INTERRUPTS];   // 用来记录中断处理程序的结构
 
 // Instance data for the PLIC.
 plic_instance_t g_plic;
@@ -93,10 +88,8 @@ plic_instance_t g_plic;
 int main(void)
 {
 	TimerHandle_t xExampleSoftwareTimer = NULL;
-
-
-    /* Configure the system ready to run the demo.  The clock configuration
-    can be done here if it was not done before main() was called. */
+ 
+    // 硬件配置，如果时钟还没配置好，将会在这儿配置
     prvSetupHardware();
 
 
