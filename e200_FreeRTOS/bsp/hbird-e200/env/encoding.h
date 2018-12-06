@@ -727,17 +727,17 @@
 #define CSR_SBADADDR 0x143
 #define CSR_SIP 0x144
 #define CSR_SPTBR 0x180
-#define CSR_MSTATUS 0x300
+#define CSR_MSTATUS 0x300   //CSR机器模式 寄存器地址 地址
 #define CSR_MISA 0x301
 #define CSR_MEDELEG 0x302
 #define CSR_MIDELEG 0x303
-#define CSR_MIE 0x304
-#define CSR_MTVEC 0x305
+#define CSR_MIE 0x304       //CSR机器模式 中断使能 地址
+#define CSR_MTVEC 0x305     //CSR机器模式 异常处理基地址 地址
 #define CSR_MSCRATCH 0x340
 #define CSR_MEPC 0x341
-#define CSR_MCAUSE 0x342
+#define CSR_MCAUSE 0x342    //CSR机器模式 异常原因寄存器 地址
 #define CSR_MBADADDR 0x343
-#define CSR_MIP 0x344
+#define CSR_MIP 0x344       //CSR机器模式 中断等待 地址
 #define CSR_TSELECT 0x7a0
 #define CSR_TDATA1 0x7a1
 #define CSR_TDATA2 0x7a2

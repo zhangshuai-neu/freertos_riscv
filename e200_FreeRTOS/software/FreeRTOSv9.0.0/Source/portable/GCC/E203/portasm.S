@@ -166,8 +166,8 @@
 trap_entry:
 	/* Check for interrupt */
 	pushREGFILE
-	csrr	a0, mcause
-	blt		a0,zero,interrupt
+	csrr	a0, mcause			// mcause 最高位为1表示中断
+	blt		a0,zero,interrupt	// 小于零是中断(有符号数字)
 	//同步中断
 	/* synchronous interrupt*/
 	/* pass sp in a1 */
@@ -181,11 +181,11 @@ trap_entry:
 /* async interrupt, this function is called */
 // 异步中断
 interrupt:
-	li      t0,INT_MASK
+	li      t0,INT_MASK			// 取出低31位
 	and     a0,a0,t0
 	li      t0, 0x7
-	beq     a0,t0, MTIME_IRQ
-	/* Interupt not m-time interrupt */
+	beq     a0,t0, MTIME_IRQ	// 时钟中断
+	/* Interupt not m-time interrupt  */
 	/* pass the exception code in a0 */
 	jal 	handle_interrupt
 	portRESTORE_X2
