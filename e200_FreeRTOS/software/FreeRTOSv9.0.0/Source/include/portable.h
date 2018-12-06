@@ -95,40 +95,25 @@ typedef struct HeapRegion
 	size_t xSizeInBytes;
 } HeapRegion_t;
 
-/*
- * Used to define multiple heap regions for use by heap_5.c.  This function
- * must be called before any calls to pvPortMalloc() - not creating a task,
- * queue, semaphore, mutex, software timer, event group, etc. will result in
- * pvPortMalloc being called.
- *
- * pxHeapRegions passes in an array of HeapRegion_t structures - each of which
- * defines a region of memory that can be used as the heap.  The array is
- * terminated by a HeapRegions_t structure that has a size of 0.  The region
- * with the lowest start address must appear first in the array.
- */
+// 定义堆管理的区域
+// 该函数必须由 pvPortMalloc()调用、
+// 创建任务、队列、信号量、互斥锁、软件中断等内容时，将会调用pvPortMalloc
+// 具体的内存管理方法，可以看MemBang下heap*.c文件
 void vPortDefineHeapRegions( const HeapRegion_t * const pxHeapRegions ) PRIVILEGED_FUNCTION;
 
-
-/*
- * Map to the memory management routines required for the port.
- */
+// 映射到内存管理例程的接口
 void *pvPortMalloc( size_t xSize ) PRIVILEGED_FUNCTION;
 void vPortFree( void *pv ) PRIVILEGED_FUNCTION;
 void vPortInitialiseBlocks( void ) PRIVILEGED_FUNCTION;
 size_t xPortGetFreeHeapSize( void ) PRIVILEGED_FUNCTION;
 size_t xPortGetMinimumEverFreeHeapSize( void ) PRIVILEGED_FUNCTION;
 
-/*
- * Setup the hardware ready for the scheduler to take control.  This generally
- * sets up a tick interrupt and sets timers for the correct tick frequency.
- */
+// 配置硬件为调度器做准备，通常配置时钟中断和设置正确的时钟频率
+// portasm.S
 BaseType_t xPortStartScheduler( void ) PRIVILEGED_FUNCTION;
 
-/*
- * Undo any hardware/ISR setup that was performed by xPortStartScheduler() so
- * the hardware is left in its original condition after the scheduler stops
- * executing.
- */
+// 撤销为调度器准备的硬件环境
+// portasm.S
 void vPortEndScheduler( void ) PRIVILEGED_FUNCTION;
 
 /*

@@ -97,12 +97,13 @@
 #define PLIC_INT_I2C_BASE    52
 
 // Helper functions
+// 用于配置外设的宏定义
 #define _REG8(p, i)             (*(volatile uint8_t *) ((p) + (i)))
 #define _REG32(p, i)            (*(volatile uint32_t *) ((p) + (i)))
 #define _REG32P(p, i)           ((volatile uint32_t *) ((p) + (i)))
 #define AON_REG(offset)         _REG32(AON_CTRL_ADDR, offset)
 #define CLINT_REG(offset)       _REG32(CLINT_CTRL_ADDR, offset)
-#define GPIO_REG(offset)        _REG32(GPIO_CTRL_ADDR, offset)
+#define GPIO_REG(offset)        _REG32(GPIO_CTRL_ADDR, offset)  //连接LED的宏
 #define OTP_REG(offset)         _REG32(OTP_CTRL_ADDR, offset)
 #define PLIC_REG(offset)        _REG32(PLIC_CTRL_ADDR, offset)
 #define PRCI_REG(offset)        _REG32(PRCI_CTRL_ADDR, offset)
@@ -117,9 +118,7 @@
 #define I2C_REG(offset)         _REG8(I2C_CTRL_ADDR, offset)
 
 // Misc
-
 #include <stdint.h>
-
 
 #define NUM_GPIO 32
 

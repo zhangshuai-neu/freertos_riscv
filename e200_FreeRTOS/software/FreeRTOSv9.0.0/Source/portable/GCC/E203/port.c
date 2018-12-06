@@ -1,6 +1,7 @@
 /*-----------------------------------------------------------
- * Implementation of functions defined in portable.h for the ARM CM3 port.
- * 定义在
+ * Implementation of functions defined in portable.h
+ * source/include/portable.h 中定义的实现
+ * 其他代码在portasm.S中
  *----------------------------------------------------------*/
 
 /* Scheduler includes. */
@@ -15,9 +16,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-
-/* Each task maintains its own interrupt status in the critical nesting
-variable. 
+/* Each task maintains its own interrupt status in the critical nestingv variable. 
 每个任务维持自己中断嵌套变量
 */
 UBaseType_t uxCriticalNesting = 0xaaaaaaaa;
@@ -28,19 +27,17 @@ UBaseType_t uxCriticalNesting = 0xaaaaaaaa;
 	unsigned long MSTATUS_INIT = (MSTATUS_MPP | MSTATUS_MPIE);
 #endif
 
-
 /*
  * Used to catch tasks that attempt to return from their implementing function.
  * 捕捉任务返回
  */
 static void prvTaskExitError( void );
 
-
 /*-----------------------------------------------------------*/
 
 /* System Call Trap */
 // 系统调用陷阱
-//ECALL macro stores argument in a2， ECALL宏，在a2中存放参数
+// ECALL macro stores argument in a2， ECALL宏，在a2中存放参数
 unsigned long ulSynchTrap(unsigned long mcause, unsigned long sp, unsigned long arg1)	{
 
 	switch(mcause)	{
@@ -113,6 +110,7 @@ void vPortExitCritical( void )
 /*-----------------------------------------------------------*/
 
 /* Clear current interrupt mask and set given mask */
+// 清除当前的中断mask，并置为给定的mask
 void vPortClearInterruptMask(int mask)
 {
 	write_csr(mie,mask);
@@ -120,6 +118,7 @@ void vPortClearInterruptMask(int mask)
 /*-----------------------------------------------------------*/
 
 /* Set interrupt mask and return current interrupt enable register */
+// 清除当前的中断mask，并置为给定的mask
 int xPortSetInterruptMask()
 {
 	uint32_t ret;
@@ -131,7 +130,7 @@ int xPortSetInterruptMask()
 /*-----------------------------------------------------------*/
 /*
  * See header file for description.
- * 设置栈寄存器
+ * 设置初始堆栈
  */
 StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t pxCode, void *pvParameters )
 {
@@ -139,6 +138,10 @@ StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t px
 	interrupt. 
 	建立模拟的栈框架，手动创建栈的上下文。
 	每个任务都是从中断进入任务切换的
+	
+	栈中存放:
+	a0 作为参数
+	ra 作为返回地址 
 	*/
 
 	register int *tp asm("x3");
@@ -162,7 +165,9 @@ StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t px
 }
 /*-----------------------------------------------------------*/
 
-
+// freeRTOS的任务不能返回(因为不知道返回到哪)
+// 如果任务想要结束，使用vTaskDelete()函数
+// 在初始化stack中使用，一个虚假的返回地址
 void prvTaskExitError( void )
 {
 	/* A function that implements a task must not exit or attempt to return to
@@ -176,8 +181,6 @@ void prvTaskExitError( void )
 }
 /*-----------------------------------------------------------*/
 
-
-/* Entry Point for Machine Timer Interrupt Handler*/
 // 系统时钟中断处理
 void vPortSysTickHandler(){
 	static uint64_t then = 0;
@@ -219,7 +222,7 @@ void vPortSetupTimer()	{
     *mtimecmp = then;
 
     // Enable the Machine-Timer bit in MIE
-	// 打开时钟
+	// 打开机器时钟，时钟中断
     set_csr(mie, MIP_MTIP);
 }
 /*-----------------------------------------------------------*/

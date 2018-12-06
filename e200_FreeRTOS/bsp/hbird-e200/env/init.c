@@ -147,6 +147,7 @@ void _init()
 
   printf("Core freq at %d Hz\n", get_cpu_freq());
 
+  // 设置异常出口地址
   write_csr(mtvec, &trap_entry);
   #endif
   

@@ -3,6 +3,7 @@
 #ifndef RISCV_CSR_ENCODING_H
 #define RISCV_CSR_ENCODING_H
 
+// 机器状态
 #define MSTATUS_UIE         0x00000001
 #define MSTATUS_SIE         0x00000002
 #define MSTATUS_HIE         0x00000004
@@ -89,6 +90,7 @@
 #define MCONTROL_MATCH_MASK_LOW  4
 #define MCONTROL_MATCH_MASK_HIGH 5
 
+// 中断等待
 #define MIP_SSIP            (1 << IRQ_S_SOFT)
 #define MIP_HSIP            (1 << IRQ_H_SOFT)
 #define MIP_MSIP            (1 << IRQ_M_SOFT)   //机器模式 软中断
@@ -99,6 +101,7 @@
 #define MIP_HEIP            (1 << IRQ_H_EXT)
 #define MIP_MEIP            (1 << IRQ_M_EXT)  // 机器模式 外部中断
 
+// 中断使能
 #define MIE_SSIE            MIP_SSIP 
 #define MIE_HSIE            MIP_HSIP 
 #define MIE_MSIE            MIP_MSIP 
@@ -124,15 +127,16 @@
 #define VM_SV39  9
 #define VM_SV48  10
 
+// 中断信号
 #define IRQ_S_SOFT   1
 #define IRQ_H_SOFT   2
-#define IRQ_M_SOFT   3
+#define IRQ_M_SOFT   3  //机器模式 软中断
 #define IRQ_S_TIMER  5
 #define IRQ_H_TIMER  6
-#define IRQ_M_TIMER  7
+#define IRQ_M_TIMER  7  //机器模式 时钟中断
 #define IRQ_S_EXT    9
 #define IRQ_H_EXT    10
-#define IRQ_M_EXT    11
+#define IRQ_M_EXT    11 //机器模式 外部中断
 #define IRQ_COP      12
 #define IRQ_HOST     13
 

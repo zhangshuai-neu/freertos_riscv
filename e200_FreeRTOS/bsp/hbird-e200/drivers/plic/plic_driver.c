@@ -18,6 +18,7 @@ void volatile_memzero(uint8_t * base, unsigned int size)
   }
 }
 
+// 平台级终端控制器，外部中断初始化
 void PLIC_init (
                 plic_instance_t * this_plic,
                 uintptr_t         base_addr,

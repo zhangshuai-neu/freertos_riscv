@@ -47,6 +47,7 @@ static void prvSetupHardware( void );
  * The queue send and receive tasks as described in the comments at the top of
  * this file.
  */
+
 static void prvQueueReceiveTask( void *pvParameters );
 static void prvQueueSendTask( void *pvParameters );
 
@@ -83,6 +84,7 @@ void no_interrupt_handler (void) {};
 function_ptr_t g_ext_interrupt_handlers[PLIC_NUM_INTERRUPTS];   // 用来记录中断处理程序的结构
 
 // Instance data for the PLIC.
+// g_plic 全局的plic实例
 plic_instance_t g_plic;
 
 int main(void)
@@ -373,6 +375,7 @@ volatile size_t xFreeStackSpace;
 
 /*ISR triggered by connecting Wake and GPIO pin 2 then pressing
 the wake button */
+// GPIO的中断处理函数
 void wake_ISR( )    {
     const uint32_t ulValueToSend = 555UL;
     
@@ -385,6 +388,7 @@ void wake_ISR( )    {
 /*-----------------------------------------------------------*/
 
 /*Entry Point for Interrupt Handler*/
+// 中断处理函数入口
 void handle_interrupt(unsigned long mcause){
 
   /* check if global*/
@@ -398,6 +402,7 @@ void handle_interrupt(unsigned long mcause){
 
 /*-----------------------------------------------------------*/
 //enables interrupt and assigns handler
+// 启用中断并注册中断处理函数
 void enable_interrupt(uint32_t int_num, uint32_t int_priority, function_ptr_t handler) {
     g_ext_interrupt_handlers[int_num] = handler;
     PLIC_set_priority(&g_plic, int_num, int_priority);
@@ -413,7 +418,7 @@ void enable_interrupt(uint32_t int_num, uint32_t int_priority, function_ptr_t ha
 void interrupts_init(  ) {
 
     // Disable the machine & timer interrupts until setup is done.
-    // 停用外部中断
+    // 停用外部中断和事件中断
     clear_csr(mie, MIP_MEIP);
     clear_csr(mie, MIP_MTIP);
 
@@ -426,8 +431,10 @@ void interrupts_init(  ) {
 	    PLIC_NUM_PRIORITIES);
 
   //assign interrupts to defaul handler
+  // 注册中断处理函数
   for (int ii = 0; ii < PLIC_NUM_INTERRUPTS; ii ++){
-      //设置外部中断的处理函数
+      //设置外部中断的处理函数,先全设置为0
+      //具体的中断处理，会在后续注册
     g_ext_interrupt_handlers[ii] = no_interrupt_handler;
   }
 
@@ -438,6 +445,7 @@ void interrupts_init(  ) {
 /*-----------------------------------------------------------*/
 
 void led_init()  {
+    // LED配置
     GPIO_REG(GPIO_INPUT_EN)    &= ~((0x1<< RED_LED_GPIO_OFFSET) | (0x1<< GREEN_LED_GPIO_OFFSET) | (0x1 << BLUE_LED_GPIO_OFFSET)) ;
     GPIO_REG(GPIO_OUTPUT_EN)   |=  ((0x1<< RED_LED_GPIO_OFFSET)| (0x1<< GREEN_LED_GPIO_OFFSET) | (0x1 << BLUE_LED_GPIO_OFFSET)) ;
     GPIO_REG(GPIO_OUTPUT_VAL)  &= ~((0x1<< RED_LED_GPIO_OFFSET) | (0x1<< GREEN_LED_GPIO_OFFSET) | (0x1 << BLUE_LED_GPIO_OFFSET)) ;
@@ -461,6 +469,7 @@ void wake_irq_init()  {
     GPIO_REG(GPIO_PULLUP_EN)  |= (1<<BUTTON_1_GPIO_OFFSET);
 
     //set to interrupt on falling edge
+    // 下降沿
     GPIO_REG(GPIO_FALL_IE)    |= (1<<BUTTON_1_GPIO_OFFSET);
 
     enable_interrupt(PLIC_INT_GPIO_BASE+BUTTON_1_GPIO_OFFSET, 2, &wake_ISR);
@@ -468,11 +477,11 @@ void wake_irq_init()  {
 }
 /*-----------------------------------------------------------*/
 
-
+// 配置硬件
 static void prvSetupHardware( void )
 {
-    interrupts_init();
-    led_init();
-    wake_irq_init();
+    interrupts_init();  // 中断
+    led_init();         // led
+    wake_irq_init();    // 唤醒中断初始化
 }
 /*-----------------------------------------------------------*/

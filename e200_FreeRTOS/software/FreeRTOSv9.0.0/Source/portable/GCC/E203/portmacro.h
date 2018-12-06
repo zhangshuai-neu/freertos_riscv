@@ -53,9 +53,9 @@ extern int xPortSetInterruptMask(); //in port.c
 extern void vPortClearInterruptMask( int uxSavedStatusValue ); //in port.c
 
 /*-----------------------------------------------------------*/
-/*System Calls												 */
+/* 系统调用      												 */
 /*-----------------------------------------------------------*/
-//ecall macro used to store argument in a3
+// 在a3中存放参数
 #define ECALL(arg) ({			\
 	register uintptr_t a2 asm ("a2") = (uintptr_t)(arg);	\
 	asm volatile ("ecall"					\

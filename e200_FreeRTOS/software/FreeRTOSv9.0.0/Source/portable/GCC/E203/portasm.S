@@ -162,6 +162,7 @@
 
 /* Interrupt entry point */
 // 中断入口点
+// 在init.c中被调用
 trap_entry:
 	/* Check for interrupt */
 	pushREGFILE

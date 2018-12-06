@@ -72,6 +72,7 @@
 
 /* This file redefines API functions to be called through a wrapper macro, but
 only for ports that are using the MPU. */
+// e200不支持MPU，所以未定义
 #ifdef portUSING_MPU_WRAPPERS
 
 	/* MPU_WRAPPERS_INCLUDED_FROM_API_FILE will be defined when this file is
