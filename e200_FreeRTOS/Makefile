@@ -20,7 +20,7 @@ DOWNLOAD    := flash
 FTDI   := ftdi
 HBIRD  := hbird
 OLMX   := olmx
-OCDCFG := ${HBIRD}
+OCDCFG := ${OLMX}
 
 E201        := e201
 E203        := e203
