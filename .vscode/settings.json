@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "encoding.h": "c"
+        "encoding.h": "c",
+        "platform.h": "c"
     }
 }

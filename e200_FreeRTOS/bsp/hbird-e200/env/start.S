@@ -1,12 +1,10 @@
-// See LICENSE for license details.
-
-// See LICENSE for license details.
-
 #include "encoding.h"
 
 	.section .init
 	.globl _start
 	.type _start,@function
+
+// FreeRTOS从此处开始执行
 
 _start:
 	csrrci x0, mstatus, 0x8  //Disable the interrupt globally
@@ -19,6 +17,8 @@ _start:
     #csrrsi x0, 0xbfe, 0x8 // Disable I-Cache
 
 	/* Bob: Load code section from flash to ITCM */
+	// 从flash加载到ITCM
+	
 	la a0, _itcm_lma
 	la a1, _itcm
     beq a0, a1, 2f  /*If the ITCM phy-address same as the logic-address, then quit*/
