@@ -1,0 +1,351 @@
+00000000 l    d  .comment	00000000 .comment
+00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
+00000000 l    d  .debug_aranges	00000000 .debug_aranges
+00000000 l    d  .debug_frame	00000000 .debug_frame
+00000000 l    d  .debug_info	00000000 .debug_info
+00000000 l    d  .debug_line	00000000 .debug_line
+00000000 l    d  .debug_loc	00000000 .debug_loc
+00000000 l    d  .debug_ranges	00000000 .debug_ranges
+00000000 l    d  .debug_str	00000000 .debug_str
+00000000 l    df *ABS*	00000000 
+00000000 l    df *ABS*	00000000 __atexit.c
+00000000 l    df *ABS*	00000000 atexit.c
+00000000 l    df *ABS*	00000000 __call_atexit.c
+00000000 l    df *ABS*	00000000 close.c
+00000000 l    df *ABS*	00000000 closer.c
+00000000 l    df *ABS*	00000000 _exit.c
+00000000 l    df *ABS*	00000000 exit.c
+00000000 l    df *ABS*	00000000 fflush.c
+00000000 l    df *ABS*	00000000 findfp.c
+00000000 l    df *ABS*	00000000 fini.c
+00000000 l    df *ABS*	00000000 fstat.c
+00000000 l    df *ABS*	00000000 fstatr.c
+00000000 l    df *ABS*	00000000 fwalk.c
+00000000 l    df *ABS*	00000000 heap_4.c
+00000000 l    df *ABS*	00000000 impure.c
+00000000 l    df *ABS*	00000000 init.c
+00000000 l    df *ABS*	00000000 init.c
+00000000 l    df *ABS*	00000000 isatty.c
+00000000 l    df *ABS*	00000000 isattyr.c
+00000000 l    df *ABS*	00000000 itoa.c
+00000000 l    df *ABS*	00000000 list.c
+00000000 l    df *ABS*	00000000 lseek.c
+00000000 l    df *ABS*	00000000 lseekr.c
+00000000 l    df *ABS*	00000000 main.c
+00000000 l    df *ABS*	00000000 makebuf.c
+00000000 l    df *ABS*	00000000 memchr.c
+00000000 l    df *ABS*	00000000 memcpy.c
+00000000 l    df *ABS*	00000000 mlock.c
+00000000 l    df *ABS*	00000000 nano-mallocr.c
+00000000 l    df *ABS*	00000000 nano-mallocr.c
+00000000 l    df *ABS*	00000000 nano-vfprintf.c
+00000000 l    df *ABS*	00000000 nano-vfprintf_i.c
+00000000 l    df *ABS*	00000000 plic_driver.c
+00000000 l    df *ABS*	00000000 port.c
+00000000 l    df *ABS*	00000000 printf.c
+00000000 l    df *ABS*	00000000 queue.c
+00000000 l    df *ABS*	00000000 read.c
+00000000 l    df *ABS*	00000000 readr.c
+00000000 l    df *ABS*	00000000 reent.c
+00000000 l    df *ABS*	00000000 sbrk.c
+00000000 l    df *ABS*	00000000 sbrkr.c
+00000000 l    df *ABS*	00000000 Source/portable/GCC/E203/portasm.o
+00000000 l    df *ABS*	00000000 stdio.c
+00000000 l    df *ABS*	00000000 sysisatty.c
+00000000 l    df *ABS*	00000000 syswrite.c
+00000000 l    df *ABS*	00000000 tasks.c
+00000000 l    df *ABS*	00000000 timers.c
+00000000 l    df *ABS*	00000000 utoa.c
+00000000 l    df *ABS*	00000000 wbuf.c
+00000000 l    df *ABS*	00000000 write.c
+00000000 l    df *ABS*	00000000 write_hex.c
+00000000 l    df *ABS*	00000000 writer.c
+00000000 l    df *ABS*	00000000 wsetup.c
+00000800 g       *ABS*	00000000 __stack_size
+  0 .init         000000b4  20000000  20000000  00001000  2**0
+ 10 .debug_abbrev 00002a4a  00000000  00000000  0001b4f1  2**0
+ 11 .debug_aranges 000006b0  00000000  00000000  0001df40  2**3
+ 12 .debug_str    0000284e  00000000  00000000  0001e5f0  2**0
+ 13 .debug_loc    0000433f  00000000  00000000  00020e3e  2**0
+ 14 .debug_ranges 00000930  00000000  00000000  0002517d  2**0
+ 15 .comment      0000003a  00000000  00000000  00025aad  2**0
+ 16 .debug_frame  00001d00  00000000  00000000  00025ae8  2**2
+  1 .ilalign      00000000  200000b4  200000b4  00006240  2**0
+20000000 g     F .init	00000000 _start
+20000000 l    d  .init	00000000 .init
+200000b4 g       .ilalign	00000000 _itcm_lma
+200000b4 l    d  .ilalign	00000000 .ilalign
+20003636 l    d  .lalign	00000000 .lalign
+20003636 l       .text	00000000 __fini_array_end
+20003636 l       .text	00000000 __fini_array_start
+20003636 l       .text	00000000 __init_array_end
+20003636 l       .text	00000000 __init_array_start
+20003636 l       .text	00000000 __preinit_array_end
+20003636 l       .text	00000000 __preinit_array_start
+20003638 g       .lalign	00000000 _data_lma
+  2 .text         00003582  80000000  200000b4  00002000  2**4
+  3 .lalign       00000002  20003636  20003636  00005636  2**0
+  4 .dalign       00000000  90000000  90000000  00006240  2**0
+  5 .data         00000240  90000000  20003638  00006000  2**2
+  6 .bss          00002f18  90000240  90000240  00006240  2**3
+  7 .stack        00000800  9000f800  90003158  00006800  2**0
+80000000 g       .ilalign	00000000 _itcm
+80000000 l    d  .text	00000000 .text
+80000000 l     F .text	00000044 prvInsertBlockIntoFreeList
+80000044 g     F .text	000000c2 main
+80000110 g       .text	00000000 trap_entry
+800001a2 l       .text	00000000 interrupt
+800001fc l       .text	00000000 MTIME_IRQ
+80000268 g       .text	00000000 xPortStartScheduler
+800002c0 g       .text	00000000 vPortYield
+8000032a g       .text	00000000 vPortEndScheduler
+8000032e g     F .text	00000014 vListInitialise
+80000342 g     F .text	00000006 vListInitialiseItem
+80000348 g     F .text	00000018 vListInsertEnd
+80000360 g     F .text	0000002e vListInsert
+8000038e g     F .text	00000020 uxListRemove
+800003ae l     F .text	00000080 prvCopyDataToQueue
+8000042e l     F .text	00000020 prvCopyDataFromQueue
+8000044e l     F .text	00000082 prvUnlockQueue
+800004d0 g     F .text	00000074 xQueueGenericReset
+80000544 g     F .text	0000004c xQueueGenericCreate
+80000590 g     F .text	0000013c xQueueGenericSend
+800006cc g     F .text	000000b2 xQueueGenericSendFromISR
+8000077e g     F .text	00000092 xQueueGiveFromISR
+80000810 g     F .text	00000158 xQueueGenericReceive
+80000968 g     F .text	00000028 vQueueAddToRegistry
+80000990 g     F .text	0000005a vQueueWaitForMessageRestricted
+800009ea l     F .text	0000001e prvResetNextTaskUnblockTime
+80000a08 l     F .text	00000092 prvAddCurrentTaskToDelayedList
+80000a9a g     F .text	000001d4 xTaskCreate
+80000c6e g     F .text	00000062 vTaskStartScheduler
+80000cd0 g     F .text	0000000c vTaskSuspendAll
+80000cdc g     F .text	0000001a xTaskGetTickCount
+80000cf6 g     F .text	00000134 xTaskIncrementTick
+80000e2a g     F .text	000000ea xTaskResumeAll
+80000f14 g     F .text	00000066 vTaskDelayUntil
+80000f7a l     F .text	00000076 prvIdleTask
+80000ff0 g     F .text	0000009a vTaskSwitchContext
+8000108a g     F .text	00000028 vTaskPlaceOnEventList
+800010b2 g     F .text	00000030 vTaskPlaceOnEventListRestricted
+800010e2 g     F .text	00000076 xTaskRemoveFromEventList
+80001158 g     F .text	00000016 vTaskSetTimeOutState
+8000116e g     F .text	00000068 xTaskCheckForTimeOut
+800011d6 g     F .text	00000008 vTaskMissedYield
+800011de g     F .text	00000014 xTaskGetSchedulerState
+800011f2 g     F .text	00000092 vTaskPriorityInherit
+80001284 g     F .text	00000074 xTaskPriorityDisinherit
+800012f8 g     F .text	00000018 pvTaskIncrementMutexHeldCount
+80001310 l     F .text	0000005a prvCheckForValidListAndQueue
+8000136a l     F .text	00000040 prvInsertTimerInActiveList
+800013aa g     F .text	0000003a xTimerCreateTimerTask
+800013e4 g     F .text	0000005c xTimerCreate
+80001440 g     F .text	0000005e xTimerGenericCommand
+8000149e l     F .text	0000007a prvSwitchTimerLists
+80001518 l     F .text	00000182 prvTimerTask
+8000169a g     F .text	00000132 pvPortMalloc
+800017cc g     F .text	0000005a vPortFree
+80001826 g     F .text	00000006 xPortGetFreeHeapSize
+8000182c l     F .text	00000016 prvTaskExitError
+80001842 g     F .text	00000082 ulSynchTrap
+800018c4 g     F .text	00000010 vPortEnterCritical
+800018d4 g     F .text	0000001a vPortExitCritical
+800018ee g     F .text	00000006 vPortClearInterruptMask
+800018f4 g     F .text	0000000a xPortSetInterruptMask
+800018fe g     F .text	00000022 pxPortInitialiseStack
+80001920 g     F .text	0000006a vPortSysTickHandler
+8000198a g     F .text	0000002a vPortSetupTimer
+800019b4 g     F .text	00000010 vPortSetup
+800019c4 g     F .text	00000002 no_interrupt_handler
+800019c6 l     F .text	00000028 vExampleTimerCallback
+800019ee l     F .text	00000034 prvEventSemaphoreTask
+80001a22 l     F .text	0000003e prvQueueSendTask
+80001a60 l     F .text	00000064 prvQueueReceiveTask
+80001ac4 g     F .text	0000004a wake_ISR
+80001b0e g     F .text	0000004e vApplicationTickHook
+80001b5c g     F .text	00000014 vApplicationMallocFailedHook
+80001b70 g     F .text	00000014 vApplicationStackOverflowHook
+80001b84 g     F .text	00000012 vApplicationIdleHook
+80001b96 g     F .text	00000044 handle_interrupt
+80001bda g     F .text	00000038 enable_interrupt
+80001c12 g     F .text	0000005a interrupts_init
+80001c6c g     F .text	00000022 led_init
+80001c8e g     F .text	00000036 wake_irq_init
+80001cc4 g     F .text	00000010 volatile_memzero
+80001cd4 g     F .text	00000050 PLIC_init
+80001d24 g     F .text	0000002c PLIC_enable_interrupt
+80001d50 g     F .text	0000000e PLIC_set_priority
+80001d5e g     F .text	00000016 PLIC_claim_interrupt
+80001d74 g     F .text	00000016 PLIC_complete_interrupt
+80001d8a l     F .text	00000044 measure_cpu_freq
+80001dce g     F .text	00000012 get_cpu_freq
+80001de0 g     F .text	00000062 _init
+80001e42 g     F .text	00000002 _fini
+80001e44 g     F .text	00000004 _close
+80001e48 g     F .text	00000034 _exit
+80001e7c g     F .text	00000070 write_hex
+80001eec g     F .text	0000001c _fstat
+80001f08 g     F .text	00000008 _isatty
+80001f10 g     F .text	00000014 _lseek
+80001f24 g     F .text	00000004 _read
+80001f28 g     F .text	0000002a _sbrk
+80001f52 g     F .text	00000052 _write
+80001fa4 g     F .text	0000000a atexit
+80001fae g     F .text	00000028 exit
+80001fd6 g     F .text	0000004c __libc_fini_array
+80002022 g     F .text	00000062 __libc_init_array
+80002084 g     F .text	00000046 __itoa
+800020ca g     F .text	00000002 itoa
+800020cc g     F .text	000000be memcpy
+8000218a g     F .text	000000a8 memset
+80002232 g     F .text	0000003e iprintf
+80002232 g     F .text	0000003e printf
+80002270 g     F .text	00000004 isatty
+80002274 g     F .text	0000000e write
+80002282 g     F .text	0000008e __utoa
+80002310 g     F .text	00000036 _write_r
+80002346 g     F .text	00000084 __register_exitproc
+800023ca g     F .text	000000d2 __call_exitprocs
+8000249c g     F .text	0000000a _cleanup_r
+800024a6 l     F .text	0000006a std.isra.0
+80002510 g     F .text	00000046 __sfmoreglue
+80002556 g     F .text	00000066 __sinit
+800025bc g     F .text	0000009c __sfp
+80002658 g     F .text	0000006c _fwalk_reent
+800026c4 g     F .text	000000da _malloc_r
+8000279e l     F .text	00000028 __sfputc_r
+800027c6 g     F .text	00000042 __sfputs_r
+80002808 g     F .text	0000029c _vfiprintf_r
+80002808 g     F .text	0000029c _vfprintf_r
+80002aa4 g     F .text	0000010c _printf_common
+80002bb0 g     F .text	000002b0 _printf_i
+80002e60 g     F .text	00000032 _sbrk_r
+80002e92 g     F .text	00000030 __sread
+80002ec2 g     F .text	00000050 __swrite
+80002f12 g     F .text	00000036 __sseek
+80002f48 g     F .text	00000006 __sclose
+80002f4e g     F .text	000000c2 __swbuf_r
+80003010 g     F .text	0000010e __swsetup_r
+8000311e g     F .text	00000032 _close_r
+80003150 g     F .text	0000013c __sflush_r
+8000328c g     F .text	00000068 _fflush_r
+800032f4 g     F .text	00000036 _lseek_r
+8000332a g     F .text	00000058 __swhatbuf_r
+80003382 g     F .text	000000a0 __smakebuf_r
+80003422 g     F .text	0000001a memchr
+8000343c g     F .text	00000002 __malloc_lock
+8000343e g     F .text	00000002 __malloc_unlock
+80003440 g     F .text	000000a6 _free_r
+800034e6 g     F .text	00000036 _read_r
+8000351c g     F .text	00000034 _fstat_r
+80003550 g     F .text	00000032 _isatty_r
+80003584 g       .lalign	00000000 _eitcm
+  8 .debug_line   000062a7  00000000  00000000  00006240  2**0
+90000000 g       .dalign	00000000 _data
+90000000 l    d  .dalign	00000000 .dalign
+90000000 l    d  .data	00000000 .data
+90000128 g     O .data	00000020 __sf_fake_stderr
+90000148 g     O .data	00000020 __sf_fake_stdin
+90000168 g     O .data	00000020 __sf_fake_stdout
+900001c4 l     O .data	00000060 impure_data
+90000228 g     O .data	00000004 MSTATUS_INIT
+9000022c g     O .data	00000004 uxCriticalNesting
+90000230 l     O .data	00000004 curbrk.1406
+90000234 g     O .data	00000004 _global_impure_ptr
+90000238 g     O .data	00000004 _impure_ptr
+90000240 g       .bss	00000000 __bss_start
+90000240 g       .bss	00000000 _edata
+90000240 g     O .bss	00000004 pxCurrentTCB
+90000240 l    d  .bss	00000000 .bss
+90000244 l     O .bss	00000004 pxDelayedTaskList
+90000248 l     O .bss	00000004 pxOverflowDelayedTaskList
+9000024c l     O .bss	00000004 uxCurrentNumberOfTasks
+90000250 l     O .bss	00000004 uxDeletedTasksWaitingCleanUp
+90000254 l     O .bss	00000004 uxPendedTicks
+90000258 l     O .bss	00000004 uxSchedulerSuspended
+9000025c l     O .bss	00000004 uxTaskNumber
+90000260 l     O .bss	00000004 uxTopReadyPriority
+90000264 l     O .bss	00000004 xIdleTaskHandle
+90000268 l     O .bss	00000004 xNextTaskUnblockTime
+9000026c l     O .bss	00000004 xNumOfOverflows
+90000270 l     O .bss	00000004 xSchedulerRunning
+90000274 l     O .bss	00000004 xTickCount
+90000278 l     O .bss	00000004 xYieldPending
+9000027c l     O .bss	00000004 pxCurrentTimerList
+90000280 l     O .bss	00000004 pxOverflowTimerList
+90000284 l     O .bss	00000004 xLastTime.2651
+90000288 l     O .bss	00000004 xTimerQueue
+9000028c l     O .bss	00000004 xTimerTaskHandle
+90000290 l     O .bss	00000004 pxEnd
+90000294 l     O .bss	00000004 xBlockAllocatedBit
+90000298 l     O .bss	00000004 xFreeBytesRemaining
+9000029c l     O .bss	00000004 xMinimumEverFreeBytesRemaining
+900002a0 l     O .bss	00000008 xStart
+900002a8 l     O .bss	00000008 then.2799
+900002b0 l     O .bss	00000004 ulCount.3694
+900002b4 l     O .bss	00000004 ulCountOfItemsReceivedOnQueue
+900002b8 l     O .bss	00000004 ulCountOfReceivedSemaphores
+900002bc l     O .bss	00000004 ulCountOfTimerCallbackExecutions
+900002c0 l     O .bss	00000004 xEventSemaphore
+900002c4 l     O .bss	00000004 xQueue
+900002c8 g     O .bss	00000004 _global_atexit
+900002cc g     O .bss	00000004 __malloc_free_list
+900002d0 g     O .bss	00000004 __malloc_sbrk_start
+900002d4 g     O .bss	00000050 xQueueRegistry
+90000324 l     O .bss	0000003c pxReadyTasksLists
+90000360 l     O .bss	00000014 xDelayedTaskList1
+90000374 l     O .bss	00000014 xDelayedTaskList2
+90000388 l     O .bss	00000014 xPendingReadyList
+9000039c l     O .bss	00000014 xSuspendedTaskList
+900003b0 l     O .bss	00000014 xTasksWaitingTermination
+900003c4 l     O .bss	00000014 xActiveTimerList1
+900003d8 l     O .bss	00000014 xActiveTimerList2
+900003ec l     O .bss	00002c00 ucHeap
+90000a28 g       .data	00000000 __global_pointer$
+90002fec g     O .bss	000000d0 g_ext_interrupt_handlers
+900030bc g     O .bss	0000000c g_plic
+900030c8 l     O .bss	0000008c _global_atexit0
+90003154 g     O .bss	00000004 errno
+90003158 g       .bss	00000000 _end
+9000f800 g       .stack	00000000 _heap_end
+9000f800 l    d  .stack	00000000 .stack
+90010000 g       .stack	00000000 _sp
+  9 .debug_info   0000f00a  00000000  00000000  0000c4e7  2**0
+                  ALLOC
+                  ALLOC
+                  ALLOC
+architecture: riscv:rv32, flags 0x00000112:
+                  CONTENTS
+                  CONTENTS
+                  CONTENTS, ALLOC, LOAD, DATA
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+                  CONTENTS, READONLY
+                  CONTENTS, READONLY, DEBUGGING
+                  CONTENTS, READONLY, DEBUGGING
+                  CONTENTS, READONLY, DEBUGGING
+                  CONTENTS, READONLY, DEBUGGING
+                  CONTENTS, READONLY, DEBUGGING
+                  CONTENTS, READONLY, DEBUGGING
+                  CONTENTS, READONLY, DEBUGGING
+                  CONTENTS, READONLY, DEBUGGING
+EXEC_P, HAS_SYMS, D_PAGED
+         filesz 0x00000000 memsz 0x00000002 flags rw-
+         filesz 0x00000000 memsz 0x00000800 flags rw-
+         filesz 0x00000000 memsz 0x00002f18 flags rw-
+         filesz 0x000000b4 memsz 0x000000b4 flags r-x
+         filesz 0x00000240 memsz 0x00000240 flags rw-
+         filesz 0x00003582 memsz 0x00003582 flags r-x
+./FreeRTOSv9.0.0
+./FreeRTOSv9.0.0:     file format elf32-littleriscv
+Idx Name          Size      VMA       LMA       File off  Algn
+    LOAD off    0x00001000 vaddr 0x20000000 paddr 0x20000000 align 2**12
+    LOAD off    0x00002000 vaddr 0x80000000 paddr 0x200000b4 align 2**12
+    LOAD off    0x00005636 vaddr 0x20003636 paddr 0x20003636 align 2**12
+    LOAD off    0x00006000 vaddr 0x90000000 paddr 0x20003638 align 2**12
+    LOAD off    0x00006240 vaddr 0x90000240 paddr 0x90000240 align 2**12
+    LOAD off    0x00006800 vaddr 0x9000f800 paddr 0x90003158 align 2**12
+Program Header:
+Sections:
+start address 0x20000000
+SYMBOL TABLE:

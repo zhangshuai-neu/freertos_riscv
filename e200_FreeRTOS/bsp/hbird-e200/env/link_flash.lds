@@ -45,6 +45,10 @@ SECTIONS
 
   . = ALIGN(4);
 
+  /*
+   * PROVIDE 进行了符号定义，如果程序中定义了该符号，则使用程序中定义的符号
+   * 如果程序未定义，则使用linker script中的符号   
+   */
   PROVIDE (__etext = .);
   PROVIDE (_etext = .);
   PROVIDE (etext = .);

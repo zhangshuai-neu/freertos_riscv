@@ -1,0 +1,39 @@
+
+./FreeRTOSv9.0.0:     file format elf32-littleriscv
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .init         000000b4  20000000  20000000  00001000  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .ilalign      00000000  200000b4  200000b4  00006240  2**0
+                  CONTENTS
+  2 .text         00003582  80000000  200000b4  00002000  2**4
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  3 .lalign       00000002  20003636  20003636  00005636  2**0
+                  ALLOC
+  4 .dalign       00000000  90000000  90000000  00006240  2**0
+                  CONTENTS
+  5 .data         00000240  90000000  20003638  00006000  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+  6 .bss          00002f18  90000240  90000240  00006240  2**3
+                  ALLOC
+  7 .stack        00000800  9000f800  90003158  00006800  2**0
+                  ALLOC
+  8 .debug_line   000062a7  00000000  00000000  00006240  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_info   0000f00a  00000000  00000000  0000c4e7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_abbrev 00002a4a  00000000  00000000  0001b4f1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_aranges 000006b0  00000000  00000000  0001df40  2**3
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_str    0000284e  00000000  00000000  0001e5f0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_loc    0000433f  00000000  00000000  00020e3e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 14 .debug_ranges 00000930  00000000  00000000  0002517d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 15 .comment      0000003a  00000000  00000000  00025aad  2**0
+                  CONTENTS, READONLY
+ 16 .debug_frame  00001d00  00000000  00000000  00025ae8  2**2
+                  CONTENTS, READONLY, DEBUGGING
