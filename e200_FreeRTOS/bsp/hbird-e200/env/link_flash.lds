@@ -9,6 +9,17 @@ MEMORY
   ram (wxa!ri) : ORIGIN = 0x90000000, LENGTH = 64K
 }
 
+/*
+>region 指明VMA虚拟地址
+AT>LMA_region LMA加载地址
+一般都是一样的，但是在嵌入式中可能会有不同情况
+比如：
+  .ialign         :
+  {
+    PROVIDE( _itcm = . );
+  } >itcm AT>flash 
+加载的时候，加载到flash中，
+*/
 
 SECTIONS
 {
