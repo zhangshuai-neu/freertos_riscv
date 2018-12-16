@@ -2,6 +2,12 @@
     "files.associations": {
         "encoding.h": "c",
         "platform.h": "c",
-        "timers.h": "c"
+        "timers.h": "c",
+        "queue.h": "c",
+        "stdio.h": "c",
+        "stdlib.h": "c",
+        "unistd.h": "c",
+        "plic_driver.h": "c",
+        "task.h": "c"
     }
 }

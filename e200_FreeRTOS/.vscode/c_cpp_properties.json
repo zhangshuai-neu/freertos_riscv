@@ -1,0 +1,23 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "/home/lzk/Desktop/FreeRTOS_test/e200_FreeRTOS/bsp/hbird-e200/env",
+                "/home/lzk/Desktop/FreeRTOS_test/e200_FreeRTOS/bsp/hbird-e200/include",
+                "/home/lzk/Desktop/FreeRTOS_test/e200_FreeRTOS/software/FreeRTOSv9.0.0/Demo/RISCV_E203_GCC",
+                "/home/lzk/Desktop/FreeRTOS_test/e200_FreeRTOS/software/FreeRTOSv9.0.0/Source/include",
+                "/home/lzk/Desktop/FreeRTOS_test/e200_FreeRTOS/software/FreeRTOSv9.0.0/Demo/Common/include",
+                "/home/lzk/Desktop/FreeRTOS_test/e200_FreeRTOS/software/FreeRTOSv9.0.0/Source/portable/GCC/E203",
+                "${workspaceFolder}/**"
+                
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "clang-x64"
+        }
+    ],
+    "version": 4
+}
